@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  a(href='/')
+   h3 Back to Apple Store
+  h3 Apple Store - Saved Quotes
+  hr
+  div
+    table.table.table-striped.table-bordered.table-hover
+      thead
+        tr 
+          th Brand
+          th Model
+          th Price (USD)
+          th Screen Size (IN)
+          th Hard Drive Size (GB)
+          th Memory (GB)
+      tbody
+        each laptop, i in laptops
+          tr(class=(i % 2 == 0) ? 'odd' : 'even')
+           td= laptop.brand
+           td= laptop.model
+           td 
+              a(href='/laptops/' + laptop._id) #{laptop.price}
+           td= laptop.screenSize
+           td= laptop.hardDrive
+           td= laptop.memory
