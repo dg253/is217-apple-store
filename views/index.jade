@@ -1,18 +1,106 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div
-    table
-      thead
-        tr 
-          th Course ID
-          th Course Name
-      tbody
-        each course, i in courses
-          tr(class=(i % 2 == 0) ? 'odd' : 'even')
-           td= course.cid
-           td 
-              a(href='/courses/' + course._id) #{course.title}
-
+  #body
+   div.navbar.navbar-inverse.navbar-static-top(role='navigation')
+    div.container-fluid
+    div.navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#') Apple Store
+    div.navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li.active
+          a(href='#') Store
+        li
+          a(href='#customize') Customize
+        li
+          a(href='/laptops') View List of Quotes
+   .container-fluid
+    .row(style="background-color:whitesmoke;padding-bottom:2px;padding-top:2px;")
+     .col-xs-1.col-md-2
+      img.img-rounded.img-responsive(src="./images/mba.png", alt='...')
+     .col-xs-12.col-sm-7.col-md-9
+      h2 Configure your Apple Macbook Air
+    #content.row
+     #customize.col-xs-12.col-sm-7.col-md-9
+      h4 Hardware
+      hr
+      form(method="post", action='/laptops/add', enctype="multipart/form-data")
+       input(type='hidden', name='brand', value='Apple')
+       input(type='hidden', name='model', value='Macbook Air')
+       .feature.row
+        .col-md-2
+         img.img-rounded.img-responsive(data-src='holder.js/90x90', alt='...')
+        .col-xs-12.col-sm-6.col-md-8
+         .content
+          h5
+           strong
+            em Screen
+          p Colorful, crisp text from our from the 11inch. Upgrade to the 13 inch monitor if your're boss.
+          input(type='radio', name='screenSize', value='11 inch', checked)
+          |     11 inch display              
+          br
+          input(type='radio', name='screenSize', onclick='screenSizeUpgrade(laptopBuild)',value='13 inch')
+          |     13 inch display [Add $200.00 more]
+       br
+       .feature.row
+        .col-md-2
+         img.img-rounded.img-responsive(data-src='holder.js/90x90', alt='...')
+        .col-xs-12.col-sm-6.col-md-8
+         .content
+          h5
+           strong
+            em Storage
+          p 128GB PCIe SSD with the fastest load times.  Upgrade to 256GB SSD for extra storage.
+          input(type='radio', name='hardDrive', value='128 GB', checked)
+          |     128GB SSD              
+          br
+          input(type='radio', name='hardDrive', onclick='hardDriveUpgrade(laptopBuild)', value='256 GB')
+          |     256GB SSD [Add $200.00 more]
+       br
+       .feature.row
+        .col-md-2
+         img.img-rounded.img-responsive(data-src='holder.js/90x90', alt='...')
+        .col-xs-12.col-sm-6.col-md-8
+         .content
+          h5
+           strong
+            em Memory
+          p 8 GB of RAM, no multitasking lag.  Upgrade to 16 GB of RAM for unmatched multitasking.
+          input(type='radio', name='memory', value='8 GB', checked)
+          |     8GB RAM               
+          br
+          input(type='radio', name='memory', onclick='memoryUpgrade(laptopBuild)', value='16 GB')
+          |   16GB RAM [Add $200.00 more]
+       br
+       br
+       br
+       br
+       h4 Your Order
+       hr
+       p Order Total              &nbsp;&nbsp;&nbsp;&nbsp;
+          input#total(type='number', name='price', value=1000)
+        .control-group
+         .controls
+           input(type='submit',value='Save Your Quote')
+     .blank.col-xs-2.col-md-1
+     #price.col-xs-3.col-md-2
+      br
+      br
+      h4(style="text-align:center;") Specifications
+      hr
+      h5 Screen:
+      p#screenSizeOrder 11 inch display
+      br
+      h5 Storage:
+      p#hardDriveOrder 128 GB SSD
+      br
+      h5 Memory:
+      p#memoryOrder 8 GB RAM
+      br
+      br
+      br

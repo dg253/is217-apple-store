@@ -1,7 +1,7 @@
 module.exports = function (app) {
 
 var index = require('./controllers/index');
-var courses = require('./controllers/courses');
+var laptops = require('./controllers/laptops');
 var passport = require('passport');
 var users = require('./controllers/users');
 var admin = require('./controllers/admin');
@@ -9,12 +9,12 @@ var admin = require('./controllers/admin');
 
   app.get('/', index.index);
   app.get('/admin',ensureAuthenticated , admin.main); 
-  app.get('/courses', courses.list);
-  app.get('/api/courses', courses.jsonlist);
-  app.get('/courses/:cid', courses.findById);
-  app.post('/courses/add', courses.add);
-  app.post('/courses/update/:cid', courses.update); 
-  
+  app.get('/laptops', laptops.list);
+  app.get('/api/laptops', laptops.jsonlist);
+  app.get('/laptops/:id', laptops.findById);
+  app.post('/laptops/add', laptops.add);
+  app.post('/laptops/update/:id', laptops.update); 
+
   app.get('/users/', users.list);
   app.get('/api/users', users.jsonlist);
   app.get('/users/:uid', users.findById);

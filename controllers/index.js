@@ -4,21 +4,18 @@
  */
 
 var mongoose = require('mongoose')
-  , Course = mongoose.model('Course');
-
+  , Laptop = mongoose.model('Laptop');
 
 exports.index = function(req, res) {
-  var course = new Course();
-      course.cid = 'IS 117';
-      course.title = 'Introduction to Building Websites';
-      course.save(function (err) {
-        console.log(err);
-      });
-  
-  Course.find({}, function(err, courses) {
+  res.render('index', {
+      title: 'Apple Store, by David Garcia'
+  });
+  /*
+  Laptop.find({}, function(err, laptops) {
     res.render('index', { 
-      title: 'Personal Learning Platform', 
-      courses: courses 
+      title: 'Apple Store, by David Garcia', 
+      laptops: laptops 
     });
- });
+  });
+  */
 }
